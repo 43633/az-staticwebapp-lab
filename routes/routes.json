@@ -1,0 +1,42 @@
+// 20210617131213
+// https://gist.githubusercontent.com/krukowskid/db137437f87a484fba673be77eb2d086/raw/63e51b32edbc3a70cdc65f7781a6f2eea0ed1ecb/routes.json
+
+{
+  "routes": [
+    {
+      "route": "/login",
+      "serve": "/.auth/login/aad"
+    },
+    {
+      "route": "/login/aad",
+      "serve": "/.auth/login/aad"
+    },
+    {
+      "route": "/.auth/login/twitter",
+      "statusCode": "401"
+    },
+    {
+      "route": "/.auth/login/facebook",
+      "statusCode": "401"
+    },
+    {
+      "route": "/.auth/login/google",
+      "statusCode": "401"
+    },
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "allowedRoles": [
+        "reader",
+        "contributor"
+      ]
+    }
+  ],
+  "platformErrorOverrides": [
+    {
+      "errorType": "Unauthenticated",
+      "serve": "/login",
+      "statusCode": "302"
+    }
+  ]
+}
